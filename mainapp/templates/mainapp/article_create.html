@@ -1,0 +1,12 @@
+{% extends 'mainapp/skelet.html' %}
+
+{% block in_pre %}
+<form method="post" id="textform" style="top: -50px; position: relative;">{% csrf_token %}
+<span style="font-size: 20px">Username:</span><a class="author_name" href="/id{{author_name.id}}/">{{author_name}}</a>
+<label for="article_title" style="font-size: 20px">Title:</label> 
+<input type="text" required="" id="article_title" class="article_title" maxlength="50" name="article_title" value="{{title}}">
+<div></div>
+<label for="article_text" style="font-size: 20px; margin-top: 20px;">Text:</label> 
+<textarea form="textform" type="text" name="article_text" required="" id="article_text" class="text_in_comment" maxlength="50000" style="margin-top: 0">{{text}}</textarea>
+<button type="submit" class="button">send</button>	
+</form>{% endblock %}

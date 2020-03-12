@@ -1,0 +1,25 @@
+{% extends 'mainapp/skelet.html' %}
+
+{% block in_pre %}
+
+<div  class="registration">
+<h2 class="reg_title">Регистрация</h2>
+<form method="post">
+{% csrf_token %}
+<label for="id_username">Nickname:</label><br>
+<input class="reg_input" type="text" name="username" maxlength="100" autofocus="" required="" id="id_username">
+<br>
+<label for="id_email">Email:</label><br>
+<input class="reg_input" type="email" name="email" maxlength="254" required="" id="id_email">
+<br>
+<label for="id_password1">Password1:</label> <br>
+<input class="reg_input" type="text" name="password1" maxlength="100" required="" id="id_password1">
+<br>
+<label for="id_password2">Password2:</label> <br>
+<input class="reg_input" type="text" name="password2" maxlength="100" required="" id="id_password2">
+<br>
+<input class="reg_send" type="submit">
+
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'mainapp/skelet.html' %}
+
+
+{% block in_pre %}
+	{% if articles_list %}
+		{% for a in articles_list %}
+		<div class="article_block">
+			<a href="{% url 'mainapp:comments_create' a.id %}"><h1 class="article_title">{{a.article_title}}</h1></a>
+			<img src="{{a.image.url}}" class="article_img" alt="{IMAGE}">
+			<pre class="description">{Описание статьи}</pre>
+			<div style="clear: both;"></div>
+			<a class="typical_href" href="/id{{a.author_name.id}}/" style="margin-left: 30px;">by {{a.author_name}}</a>
+			<a href="#" class="article_more">Подробнее</a>
+		</div>
+		{% endfor %}
+	{% else %}
+	Статьи не найдены
+	{% endif %}
+
+{% endblock %}	

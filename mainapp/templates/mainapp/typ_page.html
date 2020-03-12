@@ -1,0 +1,51 @@
+{% extends 'mainapp/skelet.html' %}
+
+{% block in_pre %}
+<pre class="in_content">
+    <h1 class="article_title">{{article.article_title}}</h1>
+<img src="{{article.image.url}}" style="margin: 5%; width: 90%;">
+{{article.article_text}}
+
+
+
+<a href='/id{{article.author_name.id}}/' class="typical_href by_author">by {{article.author_name}}</a>
+</pre>
+{% endblock %}
+
+{% block comment_view %}
+<div class="comments" id="send">
+	<div class="person_comment">
+<form action="" method="post" id="textform">
+	{% csrf_token %}
+{% if author_name == 'Guest' %}
+<p class="person_name" >{{author_name}}</p>
+{% else %}
+<a href="/id{{author_name.id}}/" class="person_name">{{author_name}}</a>
+{% endif %}
+<p><label for="id_comment_text" style="font-size: 18px;">Your comment:</label> 
+	<textarea form="textform" type="text" name="comment_text" required="" id="id_comment_text" class="text_in_comment" maxlength="50000"></textarea></p>
+
+
+	<button type="submit" class="button" style="font-size: 17px">send</button>
+	
+	
+</form>
+</div>
+    </div>
+{% if comments %}
+
+{% for comment in comments %}
+<div class="comments">
+    <div class="person_comment">
+    {% if author_name == 'Guest' %}
+    <p class="person_name">{{comment.author_name}}</p>{{comment.pub_date}}
+    {% else %}
+    <a class="person_name" href="/id{{comment.author_name.id}}/">{{comment.author_name}}</a>{{comment.pub_date}}
+    {% endif %}
+    <p class="text_in_comment" style="border: none;">{{comment.comment_text}}</p> <br>
+    </div>    
+</div>
+{% endfor %}
+
+{% endif %}
+{% endblock %}

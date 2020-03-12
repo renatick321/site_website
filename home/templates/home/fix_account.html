@@ -1,0 +1,30 @@
+{% extends 'home/skelet.html' %}
+
+{% block in_pre %}
+	<div  class="fix_account">
+	<h2 class="reg_title">Изменение данных</h2>
+	<form method="post" id="textform" enctype="multipart/form-data">
+	{% csrf_token %}
+	<label for="id_username">Nickname:</label><br>
+	<input value="{{user.username}}" class="reg_input" type="text" name="username" maxlength="100" autofocus="" required="" id="id_username">
+	<br>
+	<label for="id_email">Email:</label><br>
+	<input value="{{user.email}}" class="reg_input" type="email" name="email" maxlength="254" required="" id="id_email">
+	<br>
+	<label for="birth_date">Birth date:</label> <br>
+	<input value="{{user.birth_date|date:'Y-m-d'}}" class="reg_input" type="date" name="birth_date" maxlength="100" id="id_password1">
+	<br>
+	<label for="location">Location</label> <br>
+	<input value="{% if user.location %}Neverland{% else %}{{user.location}}{% endif %}" class="reg_input" type="text" name="location" maxlength="100" id="id_password2">
+	<br>
+	<label for="image">Image</label> <br>
+	<input class="reg_input" value="{{user.image}}" type="file" name="image" accept='image/*'>
+	<br>
+	<a href="{{user.image.url}}" class="typical_href">Your default image</a><br>
+	<textarea form="textform" type="text" name="about_me" required="" id="article_text" class="text_in_comment" maxlength="1000">{{user.about_me}}</textarea>
+	
+	<input class="reg_send" type="submit" value="Изменить">
+	</form>
+	<h5 class="message">{{message}}</h5>
+	</div>
+{% endblock %}

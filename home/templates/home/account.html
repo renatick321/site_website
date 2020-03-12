@@ -1,0 +1,28 @@
+{% extends 'home/skelet.html' %}
+
+{% block in_pre %}
+<div class="account" style="top: -60px;">
+	<img class="person_image" src="{{ user.image.url }}">
+	<p class="person_data">username: {{user.username}}</p><br>
+	<p class="person_data">email: {{user.email}}</p><br>
+	<p class="person_data">last login: {{user.last_login}}</p><br>
+	{% if user.birth_date %}<p class="person_data">birth_date: {{user.birth_date}}</p><br>{% endif %}
+	{% if user.location %}<p class="person_data">location: {{user.location}}</p><br>{% endif %}
+	{% if user.date_joined %}<p class="person_data">date joined: {{user.date_joined}}</p><br>{% endif %}
+	{% if Bool %}<a href="/fix_account/" class="nav_colomn" style="position: relative; left: -30px;"><span class="nav_href">Редактировать</span></a>{% endif %}
+</div>
+
+<div class="contant" style="margin-top: 0; position: relative;top: -60px;">
+{% if user.about_me %}
+<pre class="about_me">{{user.about_me}}</pre>
+{% endif %}
+<table class="myarticle">
+	{% for i in list %}
+	<tr class="article_row">
+		<th class="article_title_colomn"><a href="/article/{{i.id}}/" class="typ_href">{{i.article_title}}</a></th>
+		<th class="pub_date_colomn">{{i.pub_date}}</th>
+		<th class=""><a href="/id{{i.author_name.id}}" class="typ_href">{{i.author_name}}</a></th>
+		{% if i.author_name == username %}
+		<th class=""><a href="{% url 'mainapp:article_delete' i.id %}"><img src="/media/images/delete.png" class="typ_icon" alt="del"></a></th>
+		<th class=""><a href="{% url 'mainapp:fix_article' i.id %}"><img src="/media/images/red.png" class="typ_icon" alt="edit"></a></th>
+		{% endif %}</tr>{% endfor %}</table></div>{% endblock %}

@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Azona</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/media_queries.css' %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/media/images/icon.png" type="image/png">
+	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+              
+<div class="dropmenu_button" onclick="Myfunction()" id="drop_button">
+<div class="menu_line" id="line1"></div>
+<div class="menu_line" id="line2"></div>
+<div class="menu_line" id="line3"></div>
+</div>
+
+
+	<div class="main_colomn" id="main_colomn">
+		{% if not username.is_authenticated %}
+		<a href="#" class="nav_colomn enter" style="margin-left: 20%;"><span class="nav_href">ВОЙТИ</span></a>
+		<a href="#" class="nav_colomn enter" style="margin-left: 20%;"><span class="nav_href">РЕГИСТРАЦИЯ</span></a>
+		{% else %}
+		<a href="/id{{username.id}}/" class="nav_colomn enter" style="float: left;"><span class="nav_href">ПРОФИЛЬ</span></a>
+		<a href="/logout/" class="nav_colomn enter" style="float: right;"><span class="nav_href">ВЫЙТИ</span></a>
+		{% endif %}
+		<div class="categories">
+			<a class="hover_black" href="#"><div class="categories_button">Спорт</div></a>
+			<a class="hover_black" href="#"><div class="categories_button">Блог</div></a>
+			<a class="hover_black" href="#"><div class="categories_button">Бизнес</div></a>
+			<a class="hover_black" href="#"><div class="categories_button">Объявления</div></a>
+			<a class="hover_black" href="#"><div class="categories_button">Природа</div></a>
+			<a class="hover_black" href="#"><div class="categories_button">Шоу бизнес</div></a>
+			<a class="hover_black" href="#"><div class="categories_button">Другое</div></a>
+		</div>
+		<div class="nav_colomn" id="search_block2"><div class="search_block" style="display: none;">
+			<input type="text" name="search" class="search">		
+			<img src="search.png" class="search_img">
+		</div></div>
+	</div>
+
+
+
+<div class="container" id="container">
+
+<header class="header"><h1 class="title">Azona</h1>
+	<ul class="nav_row">
+		<li class="nav_colomn"><a href="/"                class="nav_href">ГЛАВНАЯ</a></li>
+		<li class="nav_colomn"><a href="/article/"        class="nav_href">НЕДАВНИЕ</a></li>
+		<li class="nav_colomn"><a href="/article/create/" class="nav_href">СОЗДАТЬ</a></li>
+		<li class="nav_colomn"><a href="/article/12/"     class="nav_href">О НАС</a></li>
+		<li class="nav_colomn"><a href="/"                class="nav_href">ПОДДЕРЖКА</a></li>
+		<li class="nav_colomn" id="search_block1"><div class="search_block">
+			<input type="text" name="search" class="search">		
+			<img src="/media/images/search.png" class="search_img">
+		</div></li>
+	</ul>
+	
+</header>
+
+
+	<div class="content" id="content">
+		{% block in_pre %}
+		{% endblock %}
+	</div>
+	<div class="main_colomn" id="main_colomn_none">
+		{% if not username.is_authenticated %}
+		<a href="#" class="nav_colomn enter" style="float: left;"><span class="nav_href">ВОЙТИ</span></a>
+		<a href="#" class="nav_colomn enter" style="float: right;"><span class="nav_href">РЕГИСТРАЦИЯ</span></a>
+		{% else %}
+		<a href="/id{{username.id}}/" class="nav_colomn enter" style="float: left;"><span class="nav_href">ПРОФИЛЬ</span></a>
+		<a href="/logout/" class="nav_colomn enter" style="float: right;"><span class="nav_href">ВЫЙТИ</span></a>
+		{% endif %}
+		<div class="categories">
+			<a class="hover_black" href="#"><div class="categories_button">Спорт</div></a>
+			<a class="hover_black" href="#"><div class="categories_button">Блог</div></a>
+			<a class="hover_black" href="#"><div class="categories_button">Бизнес</div></a>
+			<a class="hover_black" href="#"><div class="categories_button">Объявления</div></a>
+			<a class="hover_black" href="#"><div class="categories_button">Природа</div></a>
+			<a class="hover_black" href="#"><div class="categories_button">Шоу бизнес</div></a>
+			<a class="hover_black" href="#"><div class="categories_button">Другое</div></a>
+		</div>
+		<div class="nav_colomn" id="search_block2"><div class="search_block" style="display: none;">
+			<input type="text" name="search" class="search">		
+			<img src="search.png" class="search_img">
+		</div></div>
+	</div>
+	<div style="clear: both;"></div>
+	<div class="comments">
+		{% block comment_view %}
+		{% endblock %}
+	</div>
+    <footer class="footer"></footer>
+</div>
+
+
+</body>
+</html>
